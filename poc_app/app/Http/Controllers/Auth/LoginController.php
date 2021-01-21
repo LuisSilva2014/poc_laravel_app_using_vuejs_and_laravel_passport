@@ -37,4 +37,28 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function loginApi(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required'
+        ]);
+
+        if( Auth::attempt(['email'=>$request->email, 'password'=>$request->password]) ) {
+
+            $user = Auth::user();
+            $userRole = $user->role()->first();
+
+            if ($userRole) {
+                $this->scope = $userRole->role;
+            }
+
+            $token = $user->createToken($user->email.'-'.now(), [$this->scope]);
+
+            return response()->json([
+                'token' => $token->accessToken
+            ]);
+        }
+    }
 }
