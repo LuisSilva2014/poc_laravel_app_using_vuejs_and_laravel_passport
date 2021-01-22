@@ -36,6 +36,17 @@ class AuthController extends Controller
             ], 200);
     }
 
+    public function welcome()
+    {
+        return view('welcome');
+    }
+
+
+    public function anyRoute()
+    {
+        return view('home');
+    }
+
 
 
     public function login(Request $request)

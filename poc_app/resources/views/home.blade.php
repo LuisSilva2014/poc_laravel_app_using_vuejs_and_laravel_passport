@@ -15,9 +15,21 @@
                     @endif
 
                     {{ __('You are logged in!') }}
+
+
+                    <div id="app">
+                        <main-app2></main-app2>
+                    </div>
+
+                    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+
+
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+{{-- <example-component></example-component> --}}
+
 @endsection

@@ -13,10 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+Route::get('/', 'AuthController@welcome')->name('welcome');
+Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+//The key to keep vue js as a SPA you need to always return the same vue
+Route::get('/{slug}', 'AuthController@anyRoute')->name('anyr');
